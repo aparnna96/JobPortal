@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Apply for job";
+}
+
+<h2>Apply for this Job</h2>
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info">@TempData["msg"]</div>}
+
+<!--show job details-->
+<div class="card p-3" style="width: 50%;">
+    <h4>@Model.Jobtitle</h4>
+    <p><b>Skills:</b> @Model.Skills</p>
+    <p><b>Experience:</b> @Model.Exp</p>
+    <p><b>Location:</b> @Model.Location</p>
+
+</div>
+<br />
+@using (Html.BeginForm("Application_Click", "Application", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <!--Hidden fields-->
+   @Html.Hidden("cid", Session["cid"])
+   @Html.Hidden("jid", Session["jid"])
+   
+   <div class="form-group">
+    <label><b>Upload Resume(PDF/DOC):</b></label>
+    <input type="file" name="file" class="form-control" required />
+   </div>
+   <br />
+  <button type="submit" class="btn btn-primary">Submit Application</button>
+ }
+ 

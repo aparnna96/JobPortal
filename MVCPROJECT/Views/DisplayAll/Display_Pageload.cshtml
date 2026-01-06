@@ -1,0 +1,70 @@
+﻿@model MVCPROJECT.Models.JobSearch
+@{
+    ViewBag.Title = "Display_Pageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Explore Opportunities:Find Your Dream Job</h2>
+<br />
+
+<div class="job-container">
+    @using (Html.BeginForm("searchjob_click", "DisplayAll", FormMethod.Post))
+    {
+        <table style="width: 100%; border: 1px solid lightgray; background-color: lightgray; ">
+            <tr>
+                <td style="width: 25%; padding-right: 10px;">
+                    @Html.TextBoxFor(m => m.Insertise.Skills,
+                        new { @style = "width: 100%;", placeholder = "Skills" })
+                </td>
+
+                <td style="width: 25%; padding-right: 10px;">
+                    @Html.TextBoxFor(m => m.Insertise.Experience,
+                        new { @style = "width: 100%;", placeholder = "Experience" })
+                </td>
+
+                <td style="width: 25%; padding-right: 10px;">
+                    @Html.TextBoxFor(m => m.Insertise.Location,
+                        new { @style = "width: 100%;", placeholder = "Location" })
+                </td>
+
+                <td style="width: 25%; text-align: right;">
+                    <input type="submit" value="Search" class="buttons"
+                           style="background-color: navy; color: white; padding: 5px 10px;" />
+                </td>
+            </tr>
+        </table>
+    }
+
+    <br />
+
+    <table class="table w3-container">
+        <tr>
+            <th><label>Company</label></th>
+            <th><label>Job</label></th>
+            <th><label>Description</label></th>
+            <th><label>Experience</label></th>
+            <th><label>Skills</label></th>
+            <th><label>EndDate</label></th>
+            <th><label>Location</label></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Selectjob)
+        {
+            <tr>
+                <td>@Html.DisplayFor(ModelItem => item.Companyid)</td>
+                <td>@Html.DisplayFor(ModelItem => item.JobTitle)</td>
+                <td>@Html.DisplayFor(ModelItem => item.JobDescription)</td>
+                <td>@Html.DisplayFor(ModelItem => item.Experience)</td>
+                <td>@Html.DisplayFor(ModelItem => item.Skills)</td>
+                <td>@item.EndDate.ToString("MM/dd/yyyy")</td>
+                <td>@Html.DisplayFor(ModelItem => item.Location)</td>
+
+                <td>
+                    @Html.ActionLink("ApplyNow", "Application_load", "Application",
+                        new { jid = item.JobId, cid = item.Companyid }, new { @class = "button" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

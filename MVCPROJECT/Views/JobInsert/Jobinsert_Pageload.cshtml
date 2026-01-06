@@ -1,0 +1,73 @@
+﻿@model MVCPROJECT.Models.JobInsert
+@{
+    ViewBag.Title = "Jobinsert_Pageload";
+}
+
+<h2>Insert Job</h2>
+
+<div>
+    @using (Html.BeginForm("Jobinsert_Click", "JobInsert", FormMethod.Post))
+    {
+        <div>
+            <label>JobTitle:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Jobtitle)
+            @Html.ValidationMessageFor(m => m.Jobtitle)
+        </div>
+
+        <div>
+            <label>JobDescription:</label>
+        </div>
+        <div>
+            @Html.TextAreaFor(m => m.Jobdesc)
+            @Html.ValidationMessageFor(m => m.Jobdesc)
+        </div>
+
+        <div>
+            <label>Location:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Location)
+            @Html.ValidationMessageFor(m => m.Location)
+        </div>
+
+        <div>
+            <label>Experience:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Exp)
+            @Html.ValidationMessageFor(m => m.Exp)
+        </div>
+
+        <div>
+            <label>Skills:</label>
+        </div>
+        <div>
+            @foreach (var item in Model.MyFavouriteSkills)
+            {
+                <label>
+                    <input type="checkbox"
+                           value="@item.Value"
+                           @(item.Ischecked ? "checked" : "")
+                           name="SelectedSkill"
+                           id="@item.Value" />
+                    @Html.Raw(item.Text)
+                </label>
+                <br />
+            }
+        </div>
+
+        <div>
+            <label>Qualification:</label>
+        </div>
+        <div>
+            @Html.DropDownList("ddlqual", (SelectList)ViewBag.Selqual, "--Select--", new { @class = "form-control" })
+        </div>
+
+        <div>
+            <input type="submit" value="Insert" />
+            @Html.DisplayFor(m => m.Msg)
+        </div>
+    }
+</div>

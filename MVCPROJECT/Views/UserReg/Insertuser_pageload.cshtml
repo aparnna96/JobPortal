@@ -1,0 +1,99 @@
+﻿@model MVCPROJECT.Models.UserInsert
+@{
+    ViewBag.Title = "Insertuser_pageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>USER REGISTRATION</h2>
+<div>
+    @using (Html.BeginForm("InsertUser_Click", "UserReg", FormMethod.Post))
+    {
+        <div>
+            <label>Name:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Name)
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div>
+            <label>Age:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Age)
+            @Html.ValidationMessageFor(m => m.Age)
+        </div>
+        <div>
+            <label>Address:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Address)
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+        <div>
+            <label>Email:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div>
+            <label>Phone:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Phone)
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+        <div>
+            Male
+            @Html.RadioButtonFor(m => m.Gender, "Male")
+            Female
+            @Html.RadioButtonFor(m => m.Gender, "Female")
+        </div>
+        <div>
+            <label>Qualification:</label>
+        </div>
+        <div>
+            @foreach (var item in Model.MyFavouriteQual)
+            {
+                <label><input type="checkbox" value="@item.Value" checked="@item.Ischecked" name="selectedQual" id="@item.Value" /> @Html.Raw(item.Text) </label>
+            }
+        </div>
+        <div>
+            <label>Experience in Years:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Experience)
+            @Html.ValidationMessageFor(m => m.Experience)
+        </div>
+        <div>
+            <label>Skills:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Skills)
+            @Html.ValidationMessageFor(m => m.Skills)
+        </div>
+        <div>
+            <label>UserName:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Username)
+            @Html.ValidationMessageFor(m => m.Username)
+        </div>
+        <div>
+            <label>Password:</label>
+        </div>
+        <div>
+            @Html.PasswordFor(m => m.Password)
+        </div>
+        <div>
+            <label>Confirm Password</label>
+        </div>
+        <div>
+            @Html.PasswordFor(m => m.Cpassword)
+            @Html.ValidationMessageFor(m => m.Cpassword)
+        </div>
+        <div>
+            <input type="submit" value="Insert" />
+            @Html.DisplayFor(m => m.Usermsg)
+        </div>}
+</div>

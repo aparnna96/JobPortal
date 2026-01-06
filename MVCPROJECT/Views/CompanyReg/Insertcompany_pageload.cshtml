@@ -1,0 +1,66 @@
+﻿@model MVCPROJECT.Models.CompanyInsert
+@{
+    ViewBag.Title = "Insertcompany_pageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>COMPANY REGISTRATION</h2>
+<div>
+    @using (Html.BeginForm("InsertCompany_Click", "CompanyReg", FormMethod.Post))
+    {
+        <div>
+            <label>Companyame:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Companyname)
+            @Html.ValidationMessageFor(m => m.Companyname)
+        </div>
+        <div>
+            <label>Phone:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Phone)
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+        <div>
+            <label>Email:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div>
+           <label>Address:</label>
+        </div>
+        <div>
+            @Html.TextAreaFor(m => m.Address)
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+        <div>
+          <label>UserName:</label>
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Username)
+            @Html.ValidationMessageFor(m => m.Username)
+        </div>
+        <div>
+           <label>Password:</label>
+        </div>
+        <div>
+            @Html.PasswordFor(m => m.Password)
+        </div>
+        <div>
+            <label>Confirm Password</label>
+        </div>
+        <div>
+            @Html.PasswordFor(m => m.Cpassword)
+            @Html.ValidationMessageFor(m => m.Cpassword)
+        </div>
+        <div>
+        <input type="submit" value="Insert" />
+        @Html.DisplayFor(m => m.Companymsg)
+        </div>
+     }
+
+</div>
